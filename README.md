@@ -1,27 +1,122 @@
 # Living Florest
 
-Protótipo de jogo 3D desenvolvido com **Godot Engine 4.7**. O projeto ainda está em uma fase inicial: atualmente contém uma cena 3D principal com ambiente, um modelo de personagem e os recursos visuais básicos para identidade e carregamento.
+**Living Florest** é um projeto de jogo 3D de sobrevivência, exploração e descoberta da natureza. A proposta combina uma ilha pequena e cheia de recursos com uma identidade visual infantil, acessível e acolhedora, sem abandonar os desafios de administrar fome, água, abrigo, ferramentas e riscos naturais.
 
-> O nome configurado no projeto Godot ainda é `game`; não há, neste momento, uma descrição de história, objetivos ou mecânicas implementadas no código versionado.
+> **Estado do projeto:** o repositório contém atualmente um protótipo visual em Godot 4.7. As mecânicas descritas neste documento representam o conceito e o planejamento do jogo; elas ainda não estão implementadas no código versionado.
 
-## Estado atual
+## Visão do jogo
 
-O diretório `game` já possui:
+O jogador ficará preso em uma ilha e precisará compreender o ambiente para sobreviver. Explorar, coletar, criar e construir serão meios para alcançar um objetivo maior: encontrar uma forma de escapar.
 
-- Projeto configurado para Godot 4.7 com renderização **Forward Plus**.
-- Cena principal em `game/src/worlds/main.tscn`.
-- Ambiente 3D com céu procedural, horizonte e efeito de brilho (*glow*).
-- Modelo 3D de personagem aventureiro importado em formato GLB.
-- Texturas do personagem: *base color*, normal map e mapa de propriedades de material (`rm`).
-- Fontes tipográficas para uso futuro na interface.
-- Imagens de ícone em diferentes tamanhos e uma imagem de banner para carregamento.
-- Presets de exportação para **Web**, **Windows Desktop** e **Android**.
-- Física 3D configurada para usar **Jolt Physics** e executar em uma thread separada.
-- Configurações de depuração para exibir FPS, perfil de GPU, saída detalhada e rastreamento de chamadas GDScript.
+A ilha deverá funcionar como um sistema vivo. Seus recursos serão distribuídos de forma desigual e limitada, os animais ocuparão diferentes regiões e as escolhas do jogador terão consequências práticas. Além de sobreviver, o jogador poderá desenvolver curiosidade e respeito pela natureza, descobrindo espécies e aprendendo sobre o ambiente sem transformar a experiência em uma aula obrigatória.
 
-Ainda não foram encontrados no diretório `game` scripts GDScript, cenas de fases adicionais, entradas de controle, HUD, menus, câmera configurada, colisões, movimentação do personagem, inimigos, sistema de objetivos ou persistência de dados. Portanto, a cena atual deve ser entendida como uma base visual/protótipo, e não como uma versão jogável completa.
+## Pilares da experiência
 
-## Estrutura do projeto
+- **Sobrevivência:** administrar alimentação, água, abrigo, energia e equipamentos.
+- **Exploração:** investigar biomas, encontrar materiais e descobrir áreas de interesse.
+- **Criação e construção:** transformar recursos coletados em ferramentas, estruturas e meios de fuga.
+- **Escassez e decisão:** escolher onde procurar, o que fabricar e como utilizar recursos limitados.
+- **Natureza como sistema:** conviver com plantas, animais, clima e perigos que influenciam a jornada.
+- **Conhecimento opcional:** observar e catalogar espécies para quem quiser aprofundar a relação com o ambiente.
+
+## Modos de jogo planejados
+
+### Modo Sobrevivência
+
+O Modo Sobrevivência será uma experiência multiplayer competitiva. Vários jogadores compartilharão a mesma ilha, disputarão recursos limitados e decidirão entre cooperar, evitar conflitos ou competir diretamente enquanto procuram uma maneira de escapar.
+
+Para deixar a ilha, os jogadores poderão construir uma balsa, um barco ou outro meio de transporte. A preparação exigirá exploração, coleta de materiais, obtenção de comida e água, construção de abrigo e produção de ferramentas.
+
+A distribuição dos recursos deverá criar pontos naturais de disputa. O ferro, por exemplo, poderá aparecer apenas em regiões específicas e será necessário para equipamentos mais resistentes. Um jogador poderá coletar o material para acelerar sua evolução ou impedir que outros tenham acesso a ele. A escassez, portanto, deverá gerar tensão e conflito de maneira orgânica, sem depender apenas de combates planejados.
+
+### Modo História
+
+O Modo História será uma experiência individual de sobrevivência durante **quarenta dias**. O jogador estará sozinho na mata e precisará administrar cuidadosamente comida, água, abrigo, descanso e ferramentas para permanecer vivo.
+
+A proposta será diferente da competição multiplayer: os animais não serão tratados apenas como inimigos. O jogador poderá observar, encontrar e estudar espécies da ilha, catalogando animais e plantas descobertos durante a exploração.
+
+A catalogação será opcional. Cada registro poderá apresentar informações como nome da espécie, bioma e alimentação, mas ninguém precisará ler textos científicos para avançar. Quem preferir poderá concentrar-se em sobreviver, construir e explorar; quem tiver curiosidade poderá aprender mais naturalmente a partir das descobertas.
+
+## Sistemas de sobrevivência planejados
+
+### Recursos e alimentação
+
+A ilha deverá oferecer diferentes formas de obtenção de alimento, incluindo coleta, pesca, armadilhas, cultivo e preparo de comidas. O jogador poderá procurar sementes e construir um canteiro temporário para cultivar determinados recursos.
+
+A água será um recurso fundamental. Entre as possibilidades planejadas estão mecanismos de coleta de água da chuva e sistemas de filtragem que permitam tornar a água própria para consumo.
+
+### Exploração e fauna
+
+A ilha deverá reunir vegetação, animais, minerais e outros materiais distribuídos por diferentes regiões. Entrar na mata poderá revelar recursos importantes, mas também animais perigosos ou outros jogadores, especialmente no Modo Sobrevivência.
+
+Entre os animais planejados estão **onças, javalis e cobras**, além de outras espécies que poderão ser adicionadas posteriormente. Eles poderão atacar, bloquear regiões ou exigir que o jogador fuja, evite determinados locais ou lute quando necessário.
+
+### Criação e construção
+
+O sistema de criação deverá permitir produzir itens e estruturas como:
+
+- lanças, arcos e flechas;
+- enxadas, facões, cantis e varas de pesca;
+- armadilhas e fogueiras;
+- abrigos e camas;
+- canteiros temporários;
+- mecanismos de filtragem de água;
+- mecanismos de coleta de água da chuva;
+- balsas, barcos ou outros meios de fuga.
+
+### Materiais e durabilidade
+
+Os equipamentos deverão ter durabilidade relacionada ao material utilizado. Ferramentas de pedra serão mais simples e quebrarão rapidamente; equipamentos de ferro serão mais resistentes e permitirão avançar com maior segurança.
+
+A progressão deverá incentivar a exploração sem transformar a coleta em um fim isolado: encontrar materiais melhores aumentará a capacidade de sobreviver, construir e reunir os recursos necessários para escapar da ilha.
+
+## Conhecimento, experiência e evolução
+
+No Modo História, descobrir espécies — especialmente espécies raras — poderá conceder experiência. Essa experiência será usada para desenvolver habilidades do personagem, conectando progressão à exploração da natureza.
+
+Uma habilidade planejada é **Biólogo Nato**, relacionada à capacidade de reconhecer e catalogar espécies. Outras evoluções possíveis incluem:
+
+- correr mais rápido;
+- nadar mais rápido;
+- saltar mais alto;
+- enxergar melhor;
+- desenvolver visão noturna;
+- criar relações ou uma forma de amizade com determinados animais.
+
+As habilidades deverão crescer progressivamente e produzir benefícios perceptíveis. Assim, a evolução não será apenas numérica: ela representará o que o personagem aprendeu e vivenciou na ilha.
+
+O ambiente também poderá apresentar conceitos de adaptação, evolução e seleção natural por meio da própria dinâmica do jogo. Esses conceitos devem aparecer como parte da experiência de exploração, e não como conteúdo obrigatório separado da aventura.
+
+## Personagens e personalização
+
+O plano inicial prevê dois personagens jogáveis: um personagem masculino e um personagem feminino.
+
+A personalização visual será concentrada principalmente nas roupas. Entre os estilos planejados estão:
+
+- roupas simples para o início da jornada;
+- traje de biólogo, associado à pesquisa e à exploração;
+- traje de sobrevivente, adequado à vida na mata;
+- roupas douradas, como opção visual diferenciada;
+- roupas camufladas, com cores próximas da vegetação e do ambiente da ilha.
+
+Os equipamentos de sobrevivência não farão parte da personalização visual. Lanças, facões, enxadas, arcos e outros objetos seguirão os padrões definidos pelo sistema de criação.
+
+## Estado atual do protótipo
+
+O diretório `game` contém a base técnica inicial:
+
+- projeto configurado para **Godot 4.7** e renderização **Forward Plus**;
+- cena principal em `game/src/worlds/main.tscn`;
+- ambiente 3D com céu procedural e efeito de brilho (*glow*);
+- modelo 3D de personagem aventureiro em formato GLB;
+- texturas de cor, normal map e propriedades de material do personagem;
+- fontes tipográficas, ícones e banner de carregamento;
+- presets de exportação para **Web**, **Windows Desktop** e **Android**;
+- física 3D configurada com **Jolt Physics** e execução em thread separada.
+
+A cena atual possui um nó raiz `Node3D`, um `WorldEnvironment` e uma instância do modelo do personagem. Ainda não foram encontrados scripts GDScript, entradas de controle, câmera de jogo, colisões, movimentação, cenário explorável, inventário, necessidades de sobrevivência, criação, animais, multiplayer, catalogação ou interface jogável.
+
+## Estrutura atual
 
 ```text
 game/
@@ -42,30 +137,33 @@ game/
 └── project.godot
 ```
 
-Os arquivos `.import` são metadados gerados pelo importador do Godot e acompanham os assets versionados para registrar o processamento dos recursos.
+Os arquivos `.import` são metadados gerados pelo importador do Godot. Eles registram como os assets foram processados e acompanham os recursos versionados do projeto.
 
-## Cena principal
+## Roadmap sugerido
 
-A cena definida em `game/src/worlds/main.tscn` possui atualmente:
+A ordem abaixo prioriza validar o núcleo da experiência antes de investir nos sistemas mais complexos:
 
-- Um nó raiz `Node3D`.
-- Um nó `WorldEnvironment` com céu procedural e brilho habilitado.
-- Uma instância do modelo 3D do personagem aventureiro.
-
-A cena principal é configurada em `game/project.godot` e também está registrada como o autoload `Main`. O projeto usa o modo de expansão de canvas para lidar com diferentes proporções de janela.
+1. **Base jogável:** configurar câmera, controles, movimentação, colisões e um pequeno cenário de teste.
+2. **Sobrevivência essencial:** implementar inventário, coleta, fome, água, vida, abrigo e ciclo de dia e noite.
+3. **Criação:** adicionar receitas, materiais, durabilidade, ferramentas, fogueira e estruturas temporárias.
+4. **Ilha e natureza:** criar biomas, distribuição de recursos, plantas, animais e comportamentos básicos.
+5. **Modo História:** implementar os quarenta dias, catálogo de espécies, XP e habilidades de evolução.
+6. **Modo Sobrevivência:** projetar sincronização multiplayer, recursos compartilhados, competição e condições de fuga.
+7. **Personagens e apresentação:** adicionar o segundo personagem, roupas, menus, HUD, tutorial e identidade visual.
+8. **Polimento e publicação:** testar equilíbrio, acessibilidade, desempenho e exportação para Web, Windows e Android.
 
 ## Como abrir e executar
 
 1. Instale o [Godot Engine 4.7](https://godotengine.org/).
 2. Abra o Godot Project Manager.
-3. Selecione **Import** e escolha o arquivo `game/project.godot`.
-4. Abra o projeto e pressione **F6** para executar a cena atual ou **F5** para executar o projeto pela cena principal.
+3. Selecione **Import** e escolha `game/project.godot`.
+4. Abra o projeto e pressione **F6** para executar a cena atual ou **F5** para executar a cena principal.
 
-Como ainda não há sistema de entrada ou lógica de jogo implementada, a execução serve principalmente para visualizar a cena 3D e verificar o carregamento dos assets.
+No estado atual, a execução serve principalmente para visualizar a cena 3D e verificar o carregamento dos assets. Ainda não há sistema de entrada nem lógica de jogo implementados.
 
 ## Exportação
 
-Os presets atualmente configurados em `game/export_presets.cfg` são:
+Os presets configurados em `game/export_presets.cfg` são:
 
 | Plataforma | Preset |
 |---|---|
@@ -73,16 +171,7 @@ Os presets atualmente configurados em `game/export_presets.cfg` são:
 | Computador | Windows Desktop |
 | Dispositivo móvel | Android |
 
-A exportação pode exigir a instalação dos templates de exportação correspondentes no Godot e, no caso do Android, a configuração do ambiente de desenvolvimento Android.
-
-## Próximos passos sugeridos
-
-- Definir o nome, a proposta e o loop principal do jogo.
-- Criar scripts de movimentação e configurar câmera e controles.
-- Adicionar colisões e um cenário jogável.
-- Construir interface, menus e tela de carregamento usando os assets existentes.
-- Organizar cenas e scripts por sistema ou entidade à medida que o protótipo crescer.
-- Validar os presets de exportação em cada plataforma alvo.
+A exportação pode exigir os templates correspondentes do Godot e, no caso do Android, a configuração do ambiente de desenvolvimento Android.
 
 ## Licença
 
