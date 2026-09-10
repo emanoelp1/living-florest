@@ -1,0 +1,38 @@
+name: Asset Task
+description: Planejar, importar ou ajustar um asset do jogo
+title: "assets: "
+labels: [assets]
+body:
+  - type: input
+    id: requirement
+    attributes:
+      label: Requisito relacionado
+      description: Informe RF-XX ou RNF-XX do GDD.
+      placeholder: RF-XX / RNF-XX
+    validations:
+      required: true
+  - type: dropdown
+    id: asset_type
+    attributes:
+      label: Tipo de asset
+      options:
+        - Modelo 3D
+        - Textura
+        - Áudio
+        - Fonte
+        - Ícone/UI
+    validations:
+      required: true
+  - type: input
+    id: destination
+    attributes:
+      label: Pasta de destino
+      placeholder: res://assets/<categoria>/
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Critérios de aceite
+    validations:
+      required: true
