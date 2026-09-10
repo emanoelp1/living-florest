@@ -101,29 +101,30 @@ A personalização visual será concentrada principalmente nas roupas. Entre os 
 
 Os equipamentos de sobrevivência não farão parte da personalização visual. Lanças, facões, enxadas, arcos e outros objetos seguirão os padrões definidos pelo sistema de criação.
 
+## Requisitos rastreáveis
+
+O GDD em [`GDD.md`](GDD.md) é a fonte de verdade dos requisitos. A base jogável atual implementa `RF-01` (cena 3D), `RF-02` (movimento), `RF-03` (câmera), `RF-04` (ambiente de teste) e `RF-05` (composição). Os requisitos técnicos atendidos são `RNF-01` (tipagem estática), `RNF-02` (módulos por contexto), `RNF-03` (cenas revisáveis), `RNF-04` (inputs determinísticos), `RNF-05` (fluxo GitHub) e `RNF-06` (ausência de dependência quebrada).
+
 ## Estado atual do protótipo
 
-O diretório `game` contém a base técnica inicial:
+A raiz do repositório contém a base técnica inicial:
 
 - projeto configurado para **Godot 4.7** e renderização **Forward Plus**;
-- cena principal em `game/src/worlds/main.tscn`;
-- ambiente 3D com céu procedural e efeito de brilho (*glow*);
-- modelo 3D de personagem aventureiro em formato GLB;
-- texturas de cor, normal map e propriedades de material do personagem;
+- cena principal em `src/worlds/main.tscn`;
+- ambiente 3D, iluminação, piso com colisão e marcador de exploração;
+- controlador `CharacterBody3D` tipado com movimento WASD/setas e câmera de terceira pessoa;
+- geometria nativa temporária, sem preload de GLB ausente;
 - fontes tipográficas, ícones e banner de carregamento;
 - presets de exportação para **Web**, **Windows Desktop** e **Android**;
-- física 3D configurada com **Jolt Physics** e execução em thread separada.
+- física 3D configurada com **Jolt Physics**.
 
-A cena atual possui um nó raiz `Node3D`, um `WorldEnvironment` e uma instância do modelo do personagem. Ainda não foram encontrados scripts GDScript, entradas de controle, câmera de jogo, colisões, movimentação, cenário explorável, inventário, necessidades de sobrevivência, criação, animais, multiplayer, catalogação ou interface jogável.
+A cena atual possui composição de nós para ambiente, iluminação, chão, jogador, colisões, câmera e marcador. Inventário, necessidades de sobrevivência, criação, animais, multiplayer, catalogação e interface ainda pertencem às próximas fatias.
 
 ## Estrutura atual
 
 ```text
-game/
+.
 ├── assets/
-│   ├── 3d/personagens/player/
-│   │   ├── adventurer character 3d model.glb
-│   │   └── texturas do personagem
 │   ├── fonts/
 │   │   ├── beryl-static-brush-regular.ttf
 │   │   └── gossamer-ritual-display-regular.ttf
@@ -134,7 +135,9 @@ game/
 │   └── worlds/
 │       └── main.tscn
 ├── export_presets.cfg
-└── project.godot
+├── project.godot
+├── GDD.md
+└── .github/
 ```
 
 Os arquivos `.import` são metadados gerados pelo importador do Godot. Eles registram como os assets foram processados e acompanham os recursos versionados do projeto.
@@ -156,14 +159,14 @@ A ordem abaixo prioriza validar o núcleo da experiência antes de investir nos 
 
 1. Instale o [Godot Engine 4.7](https://godotengine.org/).
 2. Abra o Godot Project Manager.
-3. Selecione **Import** e escolha `game/project.godot`.
+3. Selecione **Import** e escolha `project.godot` na raiz deste repositório.
 4. Abra o projeto e pressione **F6** para executar a cena atual ou **F5** para executar a cena principal.
 
-No estado atual, a execução serve principalmente para visualizar a cena 3D e verificar o carregamento dos assets. Ainda não há sistema de entrada nem lógica de jogo implementados.
+No estado atual, a execução permite testar movimento, colisão e acompanhamento da câmera. Use WASD ou as setas direcionais.
 
 ## Exportação
 
-Os presets configurados em `game/export_presets.cfg` são:
+Os presets configurados em `export_presets.cfg` são:
 
 | Plataforma | Preset |
 |---|---|

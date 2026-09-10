@@ -1,0 +1,31 @@
+name: Feature
+description: Propor uma nova funcionalidade rastreada no GDD
+title: "feat: "
+labels: [feature]
+body:
+  - type: input
+    id: requirement
+    attributes:
+      label: Requisito relacionado
+      description: Informe um ID existente no GDD, como RF-02 ou RNF-01.
+      placeholder: RF-XX / RNF-XX
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Objetivo e comportamento esperado
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Critérios de aceite
+      description: Liste cenários verificáveis no Godot.
+    validations:
+      required: true
+  - type: input
+    id: branch
+    attributes:
+      label: Branch proposta
+      placeholder: feature/<issue_id>-<nome>
