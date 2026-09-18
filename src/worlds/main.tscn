@@ -1,6 +1,6 @@
-[gd_scene load_steps=11 format=3 uid="uid://5dyaeg0sf5no"]
+[gd_scene format=3 uid="uid://5dyaeg0sf5no"]
 
-[ext_resource type="Script" path="res://src/core/character_body_3d.gd" id="1_player"]
+[ext_resource type="Script" uid="uid://d3ry6cq54j75c" path="res://src/core/character_body_3d.gd" id="1_player"]
 
 [sub_resource type="Environment" id="Environment_main"]
 background_mode = 1
@@ -14,8 +14,8 @@ albedo_color = Color(0.12, 0.28, 0.16, 1)
 roughness = 0.92
 
 [sub_resource type="BoxMesh" id="GroundMesh"]
-size = Vector3(40, 0.2, 40)
 material = SubResource("GroundMaterial")
+size = Vector3(40, 0.2, 40)
 
 [sub_resource type="BoxShape3D" id="GroundShape"]
 size = Vector3(40, 0.2, 40)
@@ -39,47 +39,47 @@ emission_enabled = true
 emission = Color(0.05, 0.25, 0.12, 1)
 
 [sub_resource type="CylinderMesh" id="MarkerMesh"]
+material = SubResource("MarkerMaterial")
 top_radius = 0.18
 bottom_radius = 0.18
 height = 1.2
-material = SubResource("MarkerMaterial")
 
-[node name="Main" type="Node3D"]
+[node name="Main" type="Node3D" unique_id=987445866]
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1998312427]
 environment = SubResource("Environment_main")
 
-[node name="Sun" type="DirectionalLight3D" parent="."]
-rotation_degrees = Vector3(-48, -28, 0)
+[node name="Sun" type="DirectionalLight3D" parent="." unique_id=41161332]
+transform = Transform3D(0.88294756, 0.3488854, -0.3141378, 0, 0.66913056, 0.74314487, 0.46947157, -0.656158, 0.5908072, 0, 0, 0)
 light_color = Color(1, 0.92, 0.76, 1)
 light_energy = 1.15
 shadow_enabled = true
 
-[node name="Ground" type="StaticBody3D" parent="."]
+[node name="Ground" type="StaticBody3D" parent="." unique_id=2122119228]
 
-[node name="Mesh" type="MeshInstance3D" parent="Ground"]
+[node name="Mesh" type="MeshInstance3D" parent="Ground" unique_id=1821106091]
 mesh = SubResource("GroundMesh")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground" unique_id=1021558848]
 shape = SubResource("GroundShape")
 
-[node name="Player" type="CharacterBody3D" parent="."]
+[node name="Player" type="CharacterBody3D" parent="." unique_id=2140487419]
 script = ExtResource("1_player")
 
-[node name="Mesh" type="MeshInstance3D" parent="Player"]
-position = Vector3(0, 1, 0)
+[node name="Mesh" type="MeshInstance3D" parent="Player" unique_id=522047929]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 mesh = SubResource("PlayerMesh")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
-position = Vector3(0, 1, 0)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player" unique_id=1633194307]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("PlayerShape")
 
-[node name="CameraRig" type="Node3D" parent="Player"]
+[node name="CameraRig" type="Node3D" parent="Player" unique_id=2142127432]
 
-[node name="Camera3D" type="Camera3D" parent="Player/CameraRig"]
+[node name="Camera3D" type="Camera3D" parent="Player/CameraRig" unique_id=1568861703]
 current = true
 fov = 60.0
 
-[node name="ExplorationMarker" type="MeshInstance3D" parent="."]
-position = Vector3(0, 0.6, -5)
+[node name="ExplorationMarker" type="MeshInstance3D" parent="." unique_id=50494751]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, -5)
 mesh = SubResource("MarkerMesh")

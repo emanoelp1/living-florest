@@ -9,7 +9,8 @@ extends CharacterBody3D
 @onready var camera: Camera3D = $CameraRig/Camera3D
 
 func _ready() -> void:
-	camera.look_at(global_position, Vector3.UP)
+	camera.global_position = global_position + Vector3(0.0, 4.5, 7.5)
+	camera.look_at(global_position + Vector3.UP, Vector3.UP)
 
 func _physics_process(delta: float) -> void:
 	var input_vector: Vector2 = Input.get_vector("move_left", "move_right", "move_forward", "move_back")
@@ -20,11 +21,17 @@ func _physics_process(delta: float) -> void:
 	var target_velocity: Vector3 = direction * move_speed
 	velocity.x = move_toward(velocity.x, target_velocity.x, acceleration * delta)
 	velocity.z = move_toward(velocity.z, target_velocity.z, acceleration * delta)
+	
 	if not is_on_floor():
 		velocity.y -= gravity * delta
 	else:
 		velocity.y = 0.0
 
-	move_and_slide()
+	# 1. Execute movement first
+	if move_and_slide():
+		# Optional collision logic here
+		pass
+
+	# 2. Update camera relative to the player's new position
 	camera.global_position = global_position + Vector3(0.0, 4.5, 7.5)
 	camera.look_at(global_position + Vector3.UP, Vector3.UP)
